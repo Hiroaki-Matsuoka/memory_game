@@ -1,7 +1,7 @@
 'use strice'
 {
 
-  var pairs = 2;
+  var pairs = 4;
   var cards = [];
 
   var flipCount = 0;
@@ -16,6 +16,8 @@
   //　連続して正解した場合の加算と減算
   var doubleScore = 0;
 
+    // -----------初期化----------
+    // カードの枚数に合わせて数字をランダムにcreateCard()へ引数を渡す
     function init() {
     var i;
     var card;
@@ -29,7 +31,9 @@
       document.getElementById('stage').appendChild(card);
     }
   }
+    //--------初期化ここまで---------
 
+    // ------カードの生成--------　
   function createCard(num) {
     var container;
     var card;
@@ -39,7 +43,12 @@
     card = document.createElement('div');
     card.innerHTML = inner;
     card.className = 'card';
+
+    // カードをクリックしたらゲームスタート タイマー起動
+    // ゲームが開始していたらflipCard()を呼び出すだけ
+    // 
     card.addEventListener('click', function() {
+      // thisはクリックした要素
       flipCard(this);
       if (isRunning === true) {
         return;
@@ -54,8 +63,10 @@
     container.appendChild(card);
     return container;
   }
+  // --------カードの生成ここまで---------
 
-
+    // --------カードをめくる処理--------
+    // cardはクリックしたカード
   function flipCard(card) {
     if (firstCard !== null && secondCard !== null) {
       return;
@@ -72,7 +83,9 @@
       secondCard.addEventListener('transitionend', check);
     }
   }
+  // --------カードをめくる処理終了-----------
 
+  // --------カードがペアかどうかのチェック----------
     function check() {
       if (
         firstCard.children[0].textContent !==
@@ -81,10 +94,27 @@
         firstCard.className = 'card';
         secondCard.className = 'card';
         point -= 50;
+        doubleScore = 0;
+        console.log(doubleScore);
         document.getElementById('point').textContent = point;
       } else {
         correctCount++;
-        point += 100;
+        switch (doubleScore) {
+          case 1 :
+            point += 100 * 2;
+            break;
+          case 2 :
+            point += 200 * 2;
+            break;
+          case 3 :
+            point += 400 * 2;
+            break;
+          default :
+          point += 100;
+          break;
+        }
+        doubleScore++;
+        console.log(doubleScore);
         document.getElementById('point').textContent = point;
         if (correctCount === pairs) {
           clearTimeout(timeoutId);
@@ -94,13 +124,17 @@
       firstCard = null;
       secondCard = null;
     }
+   
+    // ---------カードがペアかどうかのチェック終了-------------
 
+    // ---------タイマーセット関数----------------
     function runTimer() {
       document.getElementById('score').textContent = ((Date.now() - startTime) / 1000).toFixed(2);
       timeoutId = setTimeout( function() {
         runTimer();
       }, 10);
     }
+    // ----------タイマーセット関数終了----------------
 
   init();
 }

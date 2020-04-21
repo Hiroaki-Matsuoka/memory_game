@@ -23,7 +23,7 @@ body {
 }
 
 .card {
-  cursol: pointer;
+  cursor: pointer;
   width: 100%;
   height: 100%;
   transition: 0.8s;
@@ -83,7 +83,7 @@ body {
   border-radius: 20px;
   line-height: 40px;
   text-align: center;
-  font-size 18px;
+  font-size: 18px;
   margin-top: 15px;
   box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
 }
