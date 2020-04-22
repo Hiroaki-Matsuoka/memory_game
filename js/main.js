@@ -1,6 +1,5 @@
 'use strice'
 {
-
   var pairs = 4;
   var cards = [];
 
@@ -137,4 +136,42 @@
     // ----------タイマーセット関数終了----------------
 
   init();
+
+  // -------------MODE SELECT---------------
+  var mode = document.getElementById('mode');
+  var modal = document.getElementById('modal');
+  var mask = document.getElementById('mask');
+  var close = document.getElementById('close');
+
+  var easy = document.getElementById('easy');
+  var normal = document.getElementById('normal');
+  var hard = document.getElementById('hard');
+
+  mode.addEventListener('click', function() {
+    modal.classList.remove('hidden');
+    mask.classList.remove('hidden');
+  });
+
+  close.addEventListener('click', function() {
+    modal.classList.add('hidden');
+    mask.classList.add('hidden');
+  });
+
+  mask.addEventListener('click', function() {
+    close.click();
+  });
+
+  easy.addEventListener('click', function() {
+    pairs = 4;
+  });
+
+  normal.addEventListener('click', function() {
+    pairs = 8;
+  });
+
+  hard.addEventListener('click', function() {
+    pairs = 12;
+  });
+
+
 }
