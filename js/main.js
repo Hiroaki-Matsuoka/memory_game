@@ -1,6 +1,6 @@
 'use strice'
 {
-  var pairs = 4;
+  var pairs = 0;
   var cards = [];
 
   var flipCount = 0;
@@ -17,7 +17,8 @@
 
     // -----------初期化----------
     // カードの枚数に合わせて数字をランダムにcreateCard()へ引数を渡す
-    function init() {
+    function init(getMode) {
+    pairs = getMode;
     var i;
     var card;
     for (i = 1; i <= pairs; i++) {
@@ -147,31 +148,42 @@
   var normal = document.getElementById('normal');
   var hard = document.getElementById('hard');
 
-  mode.addEventListener('click', function() {
-    modal.classList.remove('hidden');
-    mask.classList.remove('hidden');
-  });
-
-  close.addEventListener('click', function() {
+  var modalHidden = () => {
     modal.classList.add('hidden');
     mask.classList.add('hidden');
+  }
+
+  var modalOpen = () => {
+    modal.classList.remove('hidden');
+    mask.classList.remove('hidden');
+  }
+
+  mode.addEventListener('click', () => {
+    modalOpen();
   });
 
-  mask.addEventListener('click', function() {
-    close.click();
+  close.addEventListener('click', () => {
+    modalHidden();
   });
 
-  easy.addEventListener('click', function() {
-    pairs = 4;
+  mask.addEventListener('click', () => {
+    modalHidden();
   });
 
-  normal.addEventListener('click', function() {
-    pairs = 8;
+  easy.addEventListener('click', () => {
+    init(4);
+    modalHidden();
   });
 
-  hard.addEventListener('click', function() {
-    pairs = 12;
+  normal.addEventListener('click', () => {
+    init(8);
+    modalHidden();
   });
 
+  hard.addEventListener('click', () => {
+    init(12);
+    modalHidden();
+  });
+// ----------------MODE SELECT----------------
 
 }
