@@ -118,14 +118,22 @@ body {
   text-align: center;
 }
 
-#score {
+.title {
+  display: inline-block;
   font-size: 20px;
   color: #fff;
   text-align: right;
-  margin: 0 5px 10px 0;
 }
 
-#point {
+#score {
+  display: inline-block;
+  font-size: 20px;
+  color: #fff;
+  text-align: right;
+  margin: 0 20px 10px 0;
+}
+
+#point {display: inline-block;
   font-size: 20px;
   color: #fff;
   text-align: right;
@@ -151,4 +159,39 @@ body {
   opacity: 0.4;
   box-shadow: none;
   margin-top: 20px;
+
+}
+#start {
+  text-decoration: none;
+  display: block;
+  background: yellow;
+  color: #fff;
+  height: 40px;
+  border-radius: 20px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 5px;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+#stop {
+  text-decoration: none;
+  display: block;
+  background: red;
+  color: #fff;
+  height: 40px;
+  border-radius: 20px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 5px;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+#start.inactive, #stop.inactive {
+  cursor: default;
+  opacity: 0.4;
+  box-shadow: none;
+  margin-top: 10px;
 }

@@ -2,18 +2,21 @@
 {
   var pairs = 0;
   var cards = [];
+  var gameRunning = false;
 
   var flipCount = 0;
   var firstCard = null;
   var secondCard = null;
 
   var startTime;
+  var elapsedTime = 0;
   var isRunning = false;
   var correctCount = 0;
   var timeoutId;
   var point = 0;
   //　連続して正解した場合の加算と減算
   var doubleScore = 0;
+
 
     // -----------初期化----------
     // カードの枚数に合わせて数字をランダムにcreateCard()へ引数を渡す
@@ -129,11 +132,25 @@
 
     // ---------タイマーセット関数----------------
     function runTimer() {
-      document.getElementById('score').textContent = ((Date.now() - startTime) / 1000).toFixed(2);
+      document.getElementById('score').textContent = ((Date.now() - startTime + elapsedTime) / 1000).toFixed(2);
       timeoutId = setTimeout( function() {
         runTimer();
       }, 10);
     }
+
+
+    var start = document.getElementById('start');
+    var stop = document.getElementById('stop');
+
+    start.addEventListener('click', () => {
+      startTime = Date.now();
+      runTimer();
+    });
+
+    stop.addEventListener('click', () => {
+      clearTimeout(timeoutId);
+      elapsedTime += Date.now() - startTime;
+    });
     // ----------タイマーセット関数終了----------------
 
   init();
@@ -171,19 +188,37 @@
   });
 
   easy.addEventListener('click', () => {
-    init(4);
-    modalHidden();
+    if(gameRunning === true) {
+      return;
+    } else {
+      init(4);
+      modalHidden();
+      gameRunning = true;
+    }
   });
 
   normal.addEventListener('click', () => {
-    init(8);
-    modalHidden();
+    if(gameRunning === true) {
+      return;
+    } else {
+      init(8);
+      modalHidden();
+      gameRunning = true;
+    }
   });
 
   hard.addEventListener('click', () => {
-    init(12);
-    modalHidden();
+    if(gameRunning === true) {
+      return;
+    } else {
+      init(12);
+      modalHidden();
+      gameRunning = true;
+    }
   });
 // ----------------MODE SELECT----------------
+
+// ----------------STOPボタン-------------------
+
 
 }

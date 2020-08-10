@@ -8,8 +8,14 @@
 <body>
   <div class="container">
       <div id="mode">MODE SELECT</div>
-      <div id="score">0.00</div>
-      <div id="point">0</div>
+      <div class="block">
+        <div class="title">TIME:</div>
+        <div id="score">0.00</div>
+      </div>
+      <div class="block">
+        <div class="title">Point:</div>
+        <div id="point">0</div>
+      </div>
       <!-- モーダル -->
     <div id="mask" class="hidden"></div>
     <div id="modal" class="hidden">
@@ -28,6 +34,8 @@
     </div>
     
     <a href="" id="restart" class="inactive">RESTART?</a>
+    <a href="" id="start" class="inactive">START</a>
+    <a href="" id="stop" class="inactive">STOP</a>
      
   </div>
   <script src="js/main.js"></script>
